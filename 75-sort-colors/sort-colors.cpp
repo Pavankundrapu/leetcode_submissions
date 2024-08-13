@@ -1,33 +1,35 @@
 class Solution {
 public:
-void swap(int &a,int &b)
-{
-    int temp = a;
-    a = b;
-    b = temp;
-}
     void sortColors(vector<int>& nums) {
-        int low = 0;
-        int mid = 0;
-        int high = nums.size()-1;
-        while(mid<=high)
+        int red =0;
+        int white =0;
+        int blue =0;
+        for(int i =0;i<nums.size();i++)
         {
-            if(nums[mid]==0)
+            if(nums[i] == 0)
             {
-swap(nums[mid],nums[low]);
-mid++;
-low++;
+                red++;
             }
-            else if(nums[mid]==1)
+            else if(nums[i] == 1)
             {
-mid++;
+                white++;
             }
             else
             {
-swap(nums[mid],nums[high]);
-high--;
+                blue++;
             }
         }
-        
+        for(int i = 0;i<red;i++)
+        {
+            nums[i] = 0;
+        }
+        for(int i = red;i<red+white;i++)
+        {
+            nums[i] = 1;
+        }
+        for(int i = red+white;i<nums.size();i++)
+        {
+            nums[i] = 2;
+        }
     }
 };
