@@ -15,10 +15,10 @@ public:
         for(auto it: mpp)
         {
             if(mpp.find(it-1) == mpp.end())
-            {   int x = it;
+            {   
                 cnt = 1;
-                while(mpp.find(x+1) != mpp.end())
-                {   x = x+1;
+                while(mpp.find(it+1) != mpp.end())
+                {   it = it+1;
                     cnt++;
                     
                 }
