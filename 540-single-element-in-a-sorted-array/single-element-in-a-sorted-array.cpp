@@ -12,9 +12,9 @@ public:
        if(nums[nums.size()-1] != nums[nums.size()-2])
        {
         return nums[nums.size()-1];
-       }
-       int low = 1;
-       int high = nums.size()-2;
+       }//we are updating the low and high as we already checked for them
+       int low = 2;
+       int high = nums.size()-3;
        int mid;
        while(low<=high)
        {
