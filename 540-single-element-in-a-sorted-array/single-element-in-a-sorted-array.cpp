@@ -13,8 +13,8 @@ public:
        {
         return nums[nums.size()-1];
        }
-       int low = 0;
-       int high = nums.size()-1;
+       int low = 1;
+       int high = nums.size()-2;
        int mid;
        while(low<=high)
        {
