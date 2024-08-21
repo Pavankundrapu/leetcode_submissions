@@ -1,31 +1,46 @@
-class Solution {
-public:
-    bool canPlaceFlowers(vector<int>& flowerbed, int n) {
-        int count = 0;  // To keep track of the number of flowers that can be planted
-        int size = flowerbed.size();
-        
-        for (int i = 0; i < size; ++i) {
-            if (flowerbed[i] == 0) {
-                // Check if the previous and next plots are empty or out of bounds
-                bool emptyPrev = (i == 0) || (flowerbed[i - 1] == 0);
-                bool emptyNext = (i == size - 1) || (flowerbed[i + 1] == 0);
+class Solution
+{
+    public:
+        bool canPlaceFlowers(vector<int> &flowerbed, int n)
+        {
+            int i = 0;
+            if(flowerbed.size()==1)
+            {
+                if(flowerbed[0]==0&&n==1||n==0)
+                return true;
+
+                else
+                return false;
                 
-                if (emptyPrev && emptyNext) {
-                    flowerbed[i] = 1;  // Plant a flower here
-                    count++;  // Increase the count of flowers planted
-                    
-                    // If we've planted enough flowers, return true
-                    if (count >= n) {
-                        return true;
-                    }
-                    
-                    // Skip the next position since we can't plant adjacent flowers
+            }
+            while (i < flowerbed.size())
+            {
+                if (i == 0 && flowerbed[i] == 0 && flowerbed[i + 1] != 1)
+                {
+                    n--;
+                    flowerbed[i]=1;
+                   i++;
+                }
+                else if (i == flowerbed.size() - 1 && flowerbed[i] == 0 && flowerbed[i - 1] != 1)
+                {
+                    n--;
+                      flowerbed[i]=1;
                     i++;
                 }
+                else if (flowerbed[i] == 0 &&i!=0&&i!=flowerbed.size() - 1 && flowerbed[i + 1] != 1 && flowerbed[i - 1] != 1)
+                {
+                    n--;
+                      flowerbed[i]=1;
+                     i++;
+                }
+                else
+                {
+                     i++;
+                }
             }
+          
+            if (n <= 0)
+                return true;
+            return false;
         }
-        
-        // After the loop, check if we've planted enough flowers
-        return count >= n;
-    }
 };
