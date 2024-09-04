@@ -3,26 +3,25 @@ public:
     string removeOuterParentheses(string s) {
         string result;
         int counter = 0;
-        for(char c: s)
+        for(char c : s)
         {
             if(c == '(')
             {
-                if(counter>0)
+                if(counter > 0)
                 {
                     result+=c;
                 }
                 counter++;
             }
             else
-            {   
-             counter--;
-                if(counter > 0)
+            {
+                counter--;
+                if(counter>0)
                 {
                     result+=c;
                 }
-                
             }
         }
-       return result;
+        return result;
     }
 };
