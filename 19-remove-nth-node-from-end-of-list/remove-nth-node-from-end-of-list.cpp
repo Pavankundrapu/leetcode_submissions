@@ -26,6 +26,7 @@ public:
         }
         ListNode* deleteNode = slow->next;
         slow->next = slow->next->next;
+        delete(deleteNode);
         return head;
     }
 };
