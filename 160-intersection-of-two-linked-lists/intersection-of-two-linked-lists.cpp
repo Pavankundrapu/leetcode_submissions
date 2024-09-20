@@ -13,8 +13,7 @@ public:
         ListNode* temp = larger;
         
         // Move the larger list ahead by 'd' steps
-        while (d) {
-            d--;
+        while (d--) {
             temp = temp->next;
         }
         
