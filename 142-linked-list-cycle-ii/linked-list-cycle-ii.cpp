@@ -9,21 +9,32 @@
 class Solution {
 public:
     ListNode *detectCycle(ListNode *head) {
-        if(head == nullptr)
+        if(head == nullptr || head->next == nullptr)
         {
             return nullptr;
         }
-        unordered_set<ListNode*> mpp;
-        ListNode* temp = head;
-        while(temp)
+        ListNode* slow = head;
+        ListNode* fast = head;
+        while(fast != nullptr && fast->next != nullptr)
         {
-            if(mpp.find(temp) != mpp.end())
+            slow = slow->next;
+            fast = fast->next->next;
+            if(slow == fast)
             {
-                return temp;
+                break;
             }
-            mpp.insert(temp);
-            temp = temp->next;
+    
         }
-        return nullptr;
+        if(fast == nullptr || fast->next == nullptr)
+        {
+            return nullptr;
+        }
+        slow = head;
+        while(slow != fast)
+        {
+            slow = slow->next;
+            fast = fast->next;
+        }
+        return slow;
     }
 };
