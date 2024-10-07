@@ -13,16 +13,22 @@ public:
        {
         return nullptr;
        } 
-       ListNode* temp = head;
-       unordered_set<ListNode*> st;
-       while(temp)
+       ListNode* slow = head;
+       ListNode* fast = head;
+       while(fast && fast->next)
        {
-        if(st.find(temp) != st.end())
-        {
-            return temp;
-        }
-        st.insert(temp);
-        temp = temp->next;
+         slow = slow->next;
+         fast = fast->next->next;
+         if(slow == fast)
+         {
+            slow = head;
+            while(slow != fast)
+            {
+                slow = slow->next;
+                fast = fast->next;
+            }
+            return slow;
+         }
        }
        return nullptr;
     }
