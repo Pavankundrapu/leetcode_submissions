@@ -11,45 +11,38 @@
 class Solution {
 public:
     ListNode* rotateRight(ListNode* head, int k) {
-        if(head == nullptr || head->next == nullptr)
-        {
+         if (!head || !head->next || k == 0) {
             return head;
         }
-        vector<int> temp;
-        ListNode* temp1 = head;
-        while(temp1)
-        {
-            temp.push_back(temp1->val);
-            temp1 = temp1->next;
+
+        // Compute the length of the list and get the last node
+        ListNode* tail = head;
+        int length = 1;
+        while (tail->next) {
+            tail = tail->next;
+            length++;
         }
 
-        int n = temp.size();
-        k = k%n;
+        // Effective rotations
+        k = k % length;
+        if (k == 0) {
+            return head;
+        }
 
-        vector<int> arr;
-        for(int i = n-k;i<n;i++)
-        {
-            arr.push_back(temp[i]);
+        // Find the new tail (length - k - 1)-th node
+        ListNode* newTail = head;
+        for (int i = 0; i < length - k - 1; ++i) {
+            newTail = newTail->next;
         }
-        int z = n-1;
-        for(int i = n-k-1;i>=0;i--)
-        {
-            temp[z] = temp[i];
-            z--;
-        }
-        for(int i =0; i<arr.size();i++)
-        {
-            temp[i] = arr[i];
-        }
-        temp1 = head;
-        int i = 0;
-        while(temp1)
-        {
-           temp1->val = temp[i];
-           i++;
-           temp1 = temp1->next;
-        }
-        return head;
-        
+
+        // Set the new head
+        ListNode* newHead = newTail->next;
+
+        // Break the list and rotate
+        newTail->next = nullptr;
+        tail->next = head;
+
+        return newHead;
+
     }
 };
