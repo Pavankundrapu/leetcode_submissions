@@ -12,7 +12,7 @@
 class Solution {
 public:
     vector<int> inorderTraversal(TreeNode* root) {
-        vector<int> ans;
+        vector<int> inorder;
         stack<TreeNode*> st;
         TreeNode* current = root;
 
@@ -25,10 +25,10 @@ public:
             }
             current = st.top();
             st.pop();
-            ans.push_back(current->val);
+            inorder.push_back(current->val);
             current = current->right;
         }
 
-        return ans;
+        return inorder;
     }
 };
