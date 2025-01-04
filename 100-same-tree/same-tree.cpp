@@ -11,12 +11,19 @@
  */
 class Solution {
 public:
+    bool check(TreeNode* p, TreeNode* q)
+    {
+        if(!p && !q)
+        {
+            return true;
+        }
+        else if(!p || !q)
+        {
+            return false;
+        }
+        return (p->val == q->val) && (check(p->left,q->left)) && (check(p->right,q->right));
+    }
     bool isSameTree(TreeNode* p, TreeNode* q) {
-        if (!p && !q) return true;  // Both are null
-        if (!p || !q) return false; // One is null, the other is not
-        if (p->val != q->val) return false;  // Values are different
-        
-        // Recursively check left and right subtrees
-        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+        return check(p,q);
     }
 };
