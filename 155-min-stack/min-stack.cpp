@@ -31,7 +31,7 @@ public:
     void pop() {
         if(st.top() < mini)
         {
-            mini = 2*mini-st.top();
+            mini = 2L*mini-st.top();
         }
         st.pop();
     }
