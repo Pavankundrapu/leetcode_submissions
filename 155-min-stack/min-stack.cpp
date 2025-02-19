@@ -29,7 +29,7 @@ public:
     }
     
     void pop() {
-        if(mini > st.top())
+        if(st.top() < mini)
         {
             mini = 2*mini-st.top();
         }
@@ -37,7 +37,7 @@ public:
     }
     
     int top() {
-        if(mini > st.top())
+        if(st.top() < mini)
         {
             return mini;
         }
