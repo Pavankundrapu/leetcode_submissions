@@ -9,7 +9,7 @@ public:
         {
             count = 0;
             temp = -1;
-            while(count< n)
+            while(count< n-1)
             {
                 if(nums[(count+i+1)%n] > nums[i])
                 {   
