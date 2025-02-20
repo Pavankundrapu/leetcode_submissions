@@ -8,7 +8,7 @@ public:
         for(int i = 2*n-1 ; i >= 0 ;i--)
         {
              x = i%n;
-             if(x>=n)
+             if(i>=n)
              {
                  while(!st.empty() && nums[x] >= st.top())
                  {
