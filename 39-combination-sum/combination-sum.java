@@ -1,5 +1,5 @@
 class Solution {
-    private void findcomb(int index,int target,int[] arr,List<List<Integer>> ans, List<Integer> ds)
+    private void findcomb(int index,int target,int[] arr,List<List<Integer>> ans,List<Integer> ds)
     {
         if(index == arr.length)
         {
@@ -10,7 +10,7 @@ class Solution {
             return;
         }
         if(arr[index] <= target)
-        {
+        {   //pick condition
             ds.add(arr[index]);
             findcomb(index,target-arr[index],arr,ans,ds);
             ds.remove(ds.size()-1);
@@ -21,5 +21,6 @@ class Solution {
         List<List<Integer>> ans = new ArrayList<>();
         findcomb(0,target,candidates,ans,new ArrayList<>());
         return ans;
+        
     }
 }
