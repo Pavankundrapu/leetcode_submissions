@@ -14,41 +14,41 @@
  * }
  */
 class Solution {
-    public boolean findTarget(TreeNode root, int k) {
-        ArrayList<Integer> ans = new ArrayList<>();
-        Stack<TreeNode> st = new Stack<>();
-        TreeNode temp = root;
-        while(!st.empty() || temp != null)
-        {
-            while(temp != null)
-            {
-                st.push(temp);
-                temp = temp.left;
-            }   
-                ans.add(st.peek().val);
-                temp = st.peek().right;
-                st.pop();
-        }
-
-        int i = 0;
-        int j = ans.size()-1;
-        int sum;
-        while(i<j)
-        {   sum = ans.get(i)+ans.get(j);
-            if(sum == k)
+    public boolean check(List<Integer> ls,int k)
+    {
+        int low = 0;
+        int high = ls.size()-1;
+        while(low<high)
+        {   int sum = ls.get(low)+ls.get(high);
+            if( sum == k)
             {
                 return true;
             }
             else if(sum > k)
             {
-                j--;
+                high--;
             }
-            else
-            {
-                i++;
+            else{
+                low++;
             }
-        } 
+        }
         return false;
-        
+    }
+    public boolean findTarget(TreeNode root, int k) {
+        Stack<TreeNode> st = new Stack<>();
+        TreeNode curr = root;
+        List<Integer> ls = new ArrayList<>();
+        while(!st.isEmpty() || curr != null)
+        {
+            while(curr != null)
+            {
+                st.add(curr);
+                curr = curr.left;
+            }
+            curr = st.pop();
+            ls.add(curr.val);
+            curr = curr.right;
+        }
+        return check(ls,k);
     }
 }
