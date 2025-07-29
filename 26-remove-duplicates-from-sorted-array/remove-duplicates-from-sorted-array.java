@@ -9,9 +9,7 @@ class Solution {
             if(nums[j]>prev)
             {
                 prev = nums[j];
-                int temp = nums[j];
-                nums[j] = nums[i];
-                nums[i] = temp;
+                nums[i] = nums[j];
                 i++;
                 j++;
                 count++;
